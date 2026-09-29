@@ -2,9 +2,9 @@ from Problema import Problema
 from KnapsackProblem import KnapsackProblem
 from MetodoExato import MetodoExato
 
-capacidade = 12
-peso = [4, 6, 3, 2]
-valores = [5, 7, 9, 6]
+peso = [5, 8, 10, 12, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+valores = [11, 17, 21, 25, 29, 31, 35, 37, 39, 41, 43, 45, 47, 49, 50]
+capacidade = 127
 
 solucionador = MetodoExato()
 pMochila = KnapsackProblem(capacidade, peso, valores)

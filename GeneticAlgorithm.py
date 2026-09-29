@@ -7,6 +7,23 @@ class GeneticAlgorithm(Heuristica):
         self.geracoes = geracoes
         self.taxaMutacao = taxaMutacao
     def _cruzamento(self, pai1, pai2):
+        if isinstance(pai1, dict):
+            # Crossover para dicionários
+            chaves = list(pai1.keys())
+            if len(chaves) > 1:
+                ponto = random.randint(1, len(chaves) - 1)
+                filho1 = {}
+                filho2 = {}
+                for i, k in enumerate(chaves):
+                    if i < ponto:
+                        filho1[k] = pai1[k]
+                        filho2[k] = pai2[k]
+                    else:
+                        filho1[k] = pai2[k]
+                        filho2[k] = pai1[k]
+                return filho1, filho2
+            return pai1.copy(), pai2.copy()
+            
         if len(pai1) > 1:
             ponto = random.randint(1, len(pai1) - 1)
             filho1 = pai1[:ponto] + pai2[ponto:]
@@ -77,7 +94,8 @@ class GeneticAlgorithm(Heuristica):
                 valorMelhorGlobal = melhor_da_geracao_fit
                 melhorSolucaoGlobal = melhor_da_geracao_ind
             
-            # Condição de parada: se o fitness total da próxima geração não evolui, o sistema deve parar
+            # Condição de parada: se o fitness total da próxima geração não evolui,
+            # o sistema deve parar
             if (maximize and fitness_total_nova <= fitness_total_anterior) or \
                (not maximize and fitness_total_nova >= fitness_total_anterior):
                 break

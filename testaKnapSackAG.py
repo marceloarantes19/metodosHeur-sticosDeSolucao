@@ -2,13 +2,14 @@ from Problema import Problema
 from KnapsackProblem import KnapsackProblem
 from GeneticAlgorithm import GeneticAlgorithm
 
-capacidade = 12
-peso = [4, 6, 3, 2]
-valores = [5, 7, 9, 6]
+peso = [5, 8, 10, 12, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+valores = [11, 17, 21, 25, 29, 31, 35, 37, 39, 41, 43, 45, 47, 49, 50]
+capacidade = 127
 
-solucionador = GeneticAlgorithm(tamanhoPopulacao=6, geracoes=4, taxaMutacao=0.2)
+solucionador = GeneticAlgorithm(tamanhoPopulacao=300, geracoes=100, taxaMutacao=0.3)
 pMochila = KnapsackProblem(capacidade, peso, valores)
 melhor_solucao, melhor_valor = solucionador.resolve(pMochila, maximize=True)
 
 print("Melhor solução: ", melhor_solucao)
 print("Melhor valor: ", melhor_valor)
+

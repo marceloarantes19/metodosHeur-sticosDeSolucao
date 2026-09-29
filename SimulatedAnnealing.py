@@ -14,7 +14,14 @@ class SimulatedAnnealing(Heuristica):
             self.agenda.append(temp)
             temp *= self.taxaResfriamento
         
-    def gera_vizinho_distancia(self, solucao, temperatura):
+    def gera_vizinho_distancia(self, solucao, temperatura, problema=None):
+        if problema:
+            vizinhos = problema.geraVizinhos(solucao)
+            if vizinhos:
+                return random.choice(vizinhos)
+            return solucao
+            
+        # Fallback para o comportamento antigo de binário (Knapsack)
         n = len(solucao)
         distancia = max(1, int((temperatura / self.temperaturaInicial) * n))
         vizinho = list(solucao)
@@ -30,7 +37,7 @@ class SimulatedAnnealing(Heuristica):
         melhorSolucao = solucaoAtual
         valorMelhorSolucao = valorSolucaoAtual
         for temperatura in self.agenda:
-            vizinho = self.gera_vizinho_distancia(solucaoAtual, temperatura)
+            vizinho = self.gera_vizinho_distancia(solucaoAtual, temperatura, problema)
             valorVizinho = problema.avalia(vizinho)
             delta = (valorVizinho - valorSolucaoAtual) if maximize else \
                     (valorSolucaoAtual - valorVizinho)

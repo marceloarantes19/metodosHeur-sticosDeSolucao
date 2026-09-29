@@ -7,6 +7,8 @@ class HillClimbing(Heuristica):
         solucaoAtual = problema.geraSolucaoAleatoria()
         valorSolucaoAtual = problema.avalia(solucaoAtual)
         for _ in range(self.maximoDeIteracoes):
+            print(f"\nSolução Atual: {solucaoAtual}")
+            print(f"Valor Atual: {valorSolucaoAtual}")
             vizinhos = problema.geraVizinhos(solucaoAtual)
             if not vizinhos:
                 break
@@ -14,6 +16,7 @@ class HillClimbing(Heuristica):
             valorMelhorVizinho = float('-inf') if maximize else float('inf')
             for vizinho in vizinhos:
                 valorVizinho = problema.avalia(vizinho)
+                print(f"......... Vizinho: {vizinho} - Valor: {valorVizinho}")
                 if (maximize and valorVizinho > valorMelhorVizinho) or (not maximize and valorVizinho < valorMelhorVizinho):
                     melhorVizinho = vizinho
                     valorMelhorVizinho = valorVizinho
