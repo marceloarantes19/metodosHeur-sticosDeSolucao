@@ -9,3 +9,5 @@ class Heuristica(ABC):
         """Aplica a heurística ao problema para encontrar uma solução."""
         pass
 
+# Teste de Commit
+# teste 2
