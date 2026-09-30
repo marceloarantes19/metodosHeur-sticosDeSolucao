@@ -10,4 +10,4 @@ class Heuristica(ABC):
         pass
 
 # Teste de Commit
-# teste 2
+# teste 2 
